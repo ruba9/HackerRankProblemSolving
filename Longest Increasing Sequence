@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception{
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+        int[] array = Arrays.stream(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .mapToInt(Integer::parseInt).toArray();
+
+        // your code starts here
+        int max =0;
+        int count = 0;
+
+        if(array.length==1){
+            System.out.println(1);
+
+        }else {
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] < array[i + 1]) {
+                    count++;
+                    if (i + 1 == array.length - 1)
+                        count++;
+                } else {
+
+                    count++;
+                    if (count > max) {
+                        max = count;
+                    }
+
+                    count = 0;
+
+                }
+            }
+
+
+            if (count > max) {
+                max = count;
+            }
+            System.out.println(max);
+        }
+
+        bufferedReader.close();
+    }
+
+
+}
